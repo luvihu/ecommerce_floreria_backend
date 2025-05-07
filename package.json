@@ -1,0 +1,41 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon",
+    "start": "tsc && node ./dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/validator": "^13.12.3",
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.6.0",
+    "compression": "^1.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.14.1",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.22"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "@types/compression": "^1.7.5",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.14.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
