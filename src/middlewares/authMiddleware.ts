@@ -17,7 +17,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction):
      const token = authHeader.split(' ')[1];
      try {
      // Verificar el token
-    const decoded = jwt.verify(token, 'secret_key') as { id: string; rol: string }; // Usar la variable de entorno
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string; rol: string }; // Usar la variable de entorno
     (req as RequestWithUser).user = decoded;  // Aquí asignas usuario decodificado a req.body.userId
     next();
   } catch (jwtError: any) {

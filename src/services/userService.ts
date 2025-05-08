@@ -82,7 +82,7 @@ export const loginUserService = async (email: string, password: string) => {
 
   const token = jwt.sign(
     { id: user.id, rol: user.rol },
-    'secret_key',
+    process.env.JWT_SECRET as string,
     { expiresIn: '24h' }
   );
     // Omitir password en la respuesta

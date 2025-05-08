@@ -1,18 +1,23 @@
 import { DataSource } from "typeorm";
 import "dotenv/config";
 import path from "path";
+import { User } from "../entities/User";
+import { Product } from "../entities/Product";
+import { Category } from "../entities/Category";
+import { Promotion } from "../entities/Promotion";
+import { Image } from "../entities/Image";
+
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: process.env.DB_HOST || "localhost",
-  port: parseInt(process.env.DB_PORT || "5432"),
-  username: process.env.DB_USERNAME || "postgres",
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  synchronize: process.env.NODE_ENV === "development",
-  dropSchema: false,
+  url: process.env.DATABASE_URL, 
+  ssl: true, // Conexión segura
+  synchronize: true,
   logging: false,
-  entities: [path.join(__dirname, "../entities/**/*.{ts,js}")],
-  migrations: [path.join(__dirname, "../migrations/**/*.{ts,js}")],
-  subscribers: [path.join(__dirname, "../subscribers/**/*.{ts,js}")],
+  entities: [User, Product, Category, Promotion, Image],
+  extra: {
+    ssl: {
+      rejectUnauthorized: false, // Necesario para evitar errores de certificado
+    },
+  },
 });
