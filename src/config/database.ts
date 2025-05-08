@@ -10,14 +10,16 @@ import { Image } from "../entities/Image";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  url: process.env.DATABASE_URL, 
-  ssl: true, // Conexión segura
-  synchronize: true,
-  logging: false,
+  host: process.env.POSTGRES_HOST, 
+  port: Number(process.env.POSTGRES_PORT) || 6543,
+  username: process.env.POSTGRES_USER, 
+  password: process.env.POSTGRES_PASSWORD,
+  database: process.env.POSTGRES_DATABASE || "postgres",
+  ssl: { rejectUnauthorized: false }, // Obligatorio
   entities: [User, Product, Category, Promotion, Image],
+  synchronize: false,
   extra: {
-    ssl: {
-      rejectUnauthorized: false, // Necesario para evitar errores de certificado
-    },
+    connectionTimeoutMillis: 10000,
+    max: 5, // Límite de conexiones
   },
 });
