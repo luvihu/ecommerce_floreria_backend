@@ -1,11 +1,11 @@
-import express, { Application } from 'express';
+import express from 'express';
 import compression from "compression";
 import router from './routes/index';
 import errorHandler from './middlewares/errorHandler';
 import morgan from 'morgan';
 import cors from 'cors';
 
-const app: Application = express();
+const app = express();
 
 app.use(cors());
 app.use(morgan('dev'));
