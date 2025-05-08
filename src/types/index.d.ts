@@ -1,15 +1,37 @@
-// Extensiones de tipos para módulos existentes
-import { Request as ExpressRequest } from 'express';
+import { Request as ExpressRequest, Response as ExpressResponse, NextFunction as ExpressNextFunction } from 'express';
+import { ParamsDictionary } from 'express-serve-static-core';
+import { ParsedQs } from 'qs';
 
 declare global {
   namespace Express {
+    // Extender la interfaz Request
     interface Request extends ExpressRequest {
-      user?: any; // Extiende el tipo Request de Express
+      user?: any; // Para almacenar el usuario autenticado
     }
   }
 }
 
-// Corrección para Number.parseInt
+// Redefinir los tipos de Express para incluir las propiedades que necesitas
+declare module 'express' {
+  interface Request<
+    P = ParamsDictionary,
+    ResBody = any,
+    ReqBody = any,
+    ReqQuery = ParsedQs,
+    Locals extends Record<string, any> = Record<string, any>
+  > {
+    body: ReqBody;
+    params: P;
+    query: ReqQuery;
+    headers: {
+      authorization?: string;
+      [key: string]: string | string[] | undefined;
+    };
+    user?: any;
+  }
+}
+
+// Corrección para Number.parseInt si es necesario
 interface NumberConstructor {
   parseInt(string: string, radix?: number): number;
 }

@@ -31,7 +31,12 @@ export const getProducts = async () => {
 export const getIdProducts = async (id: string) => {
   const product = await productRepository.findOne({
     where: { id },
-    relations: ['categories', 'user', 'images', 'promotions'],
+    relations:  {
+      categories: true,
+      user: true,
+      images: true,
+      promotions: true
+    },
     select: {
       id: true,
       nombre: true,
