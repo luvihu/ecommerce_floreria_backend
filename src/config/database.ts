@@ -1,6 +1,5 @@
 import { DataSource } from "typeorm";
 import "dotenv/config";
-import path from "path";
 import { User } from "../entities/User";
 import { Product } from "../entities/Product";
 import { Category } from "../entities/Category";
